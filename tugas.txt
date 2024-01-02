@@ -1,0 +1,24 @@
+1. buatlah fungsi untuk menghitung berat badan ideal dengan parameter 
+pemanggilan fungsinya adalah 
+ideal ("nama","alamat", beratBadan, tinggiBadan)
+
+output : 
+nama saya adalah "nama"
+alamat saya adalah "alamat"
+berat badan saya adalah beratBadan
+tinggi badan saya adalah tinggiBadan
+berat badan ideal saya adalah BBideal
+saya tergolong ...gemuk/ normal/ kurus
+
+2. buatlah fungsi untuk menghitung luas bangun datar dari jajar genjang.
+
+
+3. buatlah fungsi untuk konversi suhu 
+pemanggilan fungsinya 
+konversiSuhu (80)
+
+output :
+suhu celcius adalah 80 
+suhu fahreinheit adalah ...
+suhu reamur adalah ...
+suhu kelvin adalah ...
