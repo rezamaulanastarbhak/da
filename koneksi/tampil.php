@@ -31,7 +31,8 @@ $barang = $result->fetchAll();
                 <td><?= $r['Keterangan']; ?></td>
                 <td><?= $r['jenis']; ?></td>
                 <td>
-                <a href="update.php?id=<?= $r['id']; ?>">Edit</a>|<a href="delete.php?id=<?= $r['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</a>
+                <a href="update.php?id=<?= $r['id']; ?>">Edit</a>|
+                <a href="delete.php?id=<?= $r['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>

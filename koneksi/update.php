@@ -1,6 +1,7 @@
 <?php
 include 'koneksi.php';
 $conn = getConnection();
+// ini untuk post 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $name = $_POST['name'];
