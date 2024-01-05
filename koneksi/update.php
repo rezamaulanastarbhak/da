@@ -1,30 +1,27 @@
 <?php
 include 'koneksi.php';
-
+$conn = getConnection();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $name = $_POST['name'];
-    $email = $_POST['email'];
-    $age = $_POST['age'];
+    $harga = $_POST['harga'];
+    $ket = $_POST['ket'];
+    $jenis = $_POST['jenis'];
 
-    $stmt = $conn->prepare("UPDATE users SET name = :name, email = :email, age = :age WHERE id = :id");
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':age', $age);
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
+    $stmt = $conn->prepare("UPDATE barang SET nama_barang = ?, Harga = ?, Keterangan = ?, Jenis = ? WHERE id = ?");
+    $stmt->execute([$name, $harga, $ket, $jenis, $id]);
 
-    header('Location: index.php');
+    header('Location: tampil.php');
 }
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $stmt = $conn->prepare("SELECT * FROM users WHERE id = :id");
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt = $conn->prepare("SELECT * FROM barang WHERE id = ? ");
+    $stmt->execute([$id]);
+    $barang = $stmt->fetch();
+
 } else {
-    header('Location: index.php');
+    header('Location: tampil.php');
 }
 ?>
 
@@ -37,16 +34,19 @@ if (isset($_GET['id'])) {
 <body>
     <h2>Edit User</h2>
     <form method="post" action="">
-        <input type="hidden" name="id" value="<?= $user['id']; ?>">
+        <input type="hidden" name="id" value="<?= $barang['id']; ?>">
 
-        <label for="name">Name:</label>
-        <input type="text" name="name" value="<?= $user['name']; ?>" required><br>
+        <label for="name">Nama Barang:</label>
+        <input type="text" name="name" value="<?= $barang['nama_barang']; ?>" required><br>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" value="<?= $user['email']; ?>" required><br>
+        <label for="harga">Harga Barang:</label>
+        <input type="number" name="harga" value="<?= $barang['Harga']; ?>" required><br>
 
-        <label for="age">Age:</label>
-        <input type="number" name="age" value="<?= $user['age']; ?>" required><br>
+        <label for="ket">Keterangan:</label>
+        <input type="text" name="ket" value="<?= $barang['Keterangan']; ?>" required><br>
+
+        <label for="jenis">Jenis</label>
+        <input type="jenis" name="jenis" value="<?= $barang['jenis']; ?>" required><br>
 
         <button type="submit">Update</button>
     </form>
