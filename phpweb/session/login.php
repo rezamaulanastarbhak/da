@@ -1,4 +1,5 @@
 <?php
+//memulai sesion
 session_start();
 
 if($_SESSION['login'] == true){
