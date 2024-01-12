@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 require_once 'koneksi.php';
 require_once 'ProductRepository.php';
@@ -44,9 +44,11 @@ $products = $productRepository->getAll();
             <th>Gambar</th>
             <th>Aksi</th>
         </tr>
+        <?php $no = 1; ?>
         <?php foreach ($products as $product): ?>
             <tr>
-                <td><?= $product['id']; ?></td>
+                <td><?= $no++; ?></td>
+                <!-- <td><?= $product['id']; ?></td> -->
                 <td><?= $product['name']; ?></td>
                 <td><?= $product['description']; ?></td>
                 <td><?= $product['price']; ?></td>
