@@ -38,6 +38,7 @@ $products = $productRepository->getAll();
     <table>
         <tr>
             <th>No</th>
+            <!-- <th>ID</th> -->
             <th>Nama</th>
             <th>Deskripsi</th>
             <th>Harga</th>

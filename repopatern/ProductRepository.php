@@ -38,10 +38,11 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function update($id, $data)
     {
-        $stmt = $this->conn->prepare("UPDATE products SET name = :name, description = :description, price = :price WHERE id = :id");
+        $stmt = $this->conn->prepare("UPDATE products SET name = :name, description = :description, price = :price, image_path = :image_path WHERE id = :id");
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':description', $data['description']);
         $stmt->bindParam(':price', $data['price']);
+        $stmt->bindParam(':image_path', $data['image_path']);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
