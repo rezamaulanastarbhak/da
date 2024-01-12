@@ -37,7 +37,7 @@ $products = $productRepository->getAll();
     <a href="add.php">Tambah Produk</a>
     <table>
         <tr>
-            <th>ID</th>
+            <th>No</th>
             <th>Nama</th>
             <th>Deskripsi</th>
             <th>Harga</th>
