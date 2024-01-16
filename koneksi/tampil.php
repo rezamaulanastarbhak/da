@@ -5,6 +5,8 @@ $conn = getConnection();
 $sql = "select * from barang";
 $result = $conn->query($sql);
 $barang = $result->fetchAll();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +24,7 @@ $barang = $result->fetchAll();
             <th>Harga</th>
             <th>Keterangan</th>
             <th>Jenis</th>
+            <th>aksi</th>
         </tr>
         <?php foreach ($barang as $r): ?>
             <tr>

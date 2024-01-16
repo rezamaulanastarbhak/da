@@ -1,8 +1,8 @@
 <?php
 require_once 'koneksi.php';
-require_once 'ProductRepositoryInterface.php';
+require_once 'JenisRepositoryInterface.php';
 
-class ProductRepository implements ProductRepositoryInterface
+class JenisRepository implements JenisRepositoryInterface
 {
     private $conn;
 
@@ -13,14 +13,14 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function getAll()
     {
-        $stmt = $this->conn->prepare("SELECT * FROM products");
+        $stmt = $this->conn->prepare("SELECT * FROM jenis");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getById($id)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM products WHERE id = :id");
+        $stmt = $this->conn->prepare("SELECT * FROM jenis WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function create($data)
     {
-        $stmt = $this->conn->prepare("INSERT INTO products (name, description, price, image_path) VALUES (:name, :description, :price, :image_path)");
+        $stmt = $this->conn->prepare("INSERT INTO jenis (name, description, price, image_path) VALUES (:name, :description, :price, :image_path)");
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':description', $data['description']);
         $stmt->bindParam(':price', $data['price']);
@@ -38,7 +38,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function update($id, $data)
     {
-        $stmt = $this->conn->prepare("UPDATE products SET name = :name, description = :description, price = :price, image_path = :image_path WHERE id = :id");
+        $stmt = $this->conn->prepare("UPDATE Jenis SET name = :name, description = :description, price = :price, image_path = :image_path WHERE id = :id");
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':description', $data['description']);
         $stmt->bindParam(':price', $data['price']);
@@ -49,16 +49,8 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function delete($id)
     {
-        $stmt = $this->conn->prepare("DELETE FROM products WHERE id = :id");
+        $stmt = $this->conn->prepare("DELETE FROM Jenis WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-    }
-
-    public function joinAll()
-    {
-        $stmt = $this->conn->prepare("SELECT products.*, jenis.nama AS jenis_kategori FROM products
-        LEFT JOIN jenis ON products.id_jenis = jenis.id");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

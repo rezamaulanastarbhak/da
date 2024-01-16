@@ -1,7 +1,7 @@
 <?php
 //require_once 'koneksi.php';
 
-interface ProductRepositoryInterface
+interface JenisRepositoryInterface
 {
     //menampilkan (READ)
     public function getAll();
@@ -13,6 +13,4 @@ interface ProductRepositoryInterface
     public function update($id, $data);
     //delate data
     public function delete($id);
-
-    public function joinAll();
 }

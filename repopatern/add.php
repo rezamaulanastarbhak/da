@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'name' => $_POST['name'],
         'description' => $_POST['description'],
         'price' => $_POST['price'],
+        'jenis' => $_POST['jenis'],
         'image_path' => 'uploads/' . $_FILES['image']['name']
     ];
 
@@ -14,6 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $productRepository->create($data);
     header('Location: index.php');
 }
+$jenis = $jenisRepository->getAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <textarea name="description" required></textarea><br>
 
         <label for="price">Harga:</label>
+        <input type="text" name="price" required><br>
+
+        <label for="price">jenis</label>
+        <select name="jenis" required>
+            <?php foreach ($jenis as $row) : ?>
+                <option value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
+            <?php endforeach; ?>
+        </select><br>
         <input type="text" name="price" required><br>
 
         <label for="image">Gambar:</label>

@@ -1,14 +1,14 @@
 <?php
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require_once 'koneksi.php';
 require_once 'ProductRepository.php';
 require_once 'ProductRepositoryInterface.php';
 
 
-$products = $productRepository->getAll();
+$products = $productRepository->joinAll();
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,6 @@ $products = $productRepository->getAll();
     <style>
         table {
             border-collapse: collapse;
-            width: 100%;
         }
         th, td {
             border: 1px solid #ddd;
@@ -42,6 +41,7 @@ $products = $productRepository->getAll();
             <th>Nama</th>
             <th>Deskripsi</th>
             <th>Harga</th>
+            <th>Jenis</th>
             <th>Gambar</th>
             <th>Aksi</th>
         </tr>
@@ -53,6 +53,7 @@ $products = $productRepository->getAll();
                 <td><?= $product['name']; ?></td>
                 <td><?= $product['description']; ?></td>
                 <td><?= $product['price']; ?></td>
+                <td><?= $product['jenis_kategori']; ?></td>
                 <td><img src="<?= $product['image_path']; ?>" alt="Product Image"></td>
                 <td>
                     <a href="edit.php?id=<?= $product['id']; ?>">Edit</a> |
