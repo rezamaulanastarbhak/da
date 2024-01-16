@@ -16,3 +16,4 @@ interface ProductRepositoryInterface
 
     public function joinAll();
 }
+
