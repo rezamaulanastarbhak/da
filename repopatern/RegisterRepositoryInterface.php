@@ -3,16 +3,8 @@
 
 interface RegisterRepositoryInterface
 {
-    //menampilkan (READ)
-    public function getAll();
-    //menampilkan id yang mau di edit
-    public function getById($id);
-    //insert data (Create)
+    //untuk menambahkan user 
     public function create($data);
-    //update data (Update)
-    public function update($id, $data);
-    //delate data
-    public function delete($id);
-
+    //untuk cek login
     public function getUsername($username);
 }
