@@ -30,12 +30,7 @@ class RegisterRepository implements RegisterRepositoryInterface
     {
         $stmt = $this->conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
         $stmt->execute([$data['username'], $data['password'], $data['role']]);
-        // $stmt = $this->conn->prepare("INSERT INTO products (name, description, price, image_path) VALUES (:name, :description, :price, :image_path)");
-        // $stmt->bindParam(':name', $data['name']);
-        // $stmt->bindParam(':description', $data['description']);
-        // $stmt->bindParam(':price', $data['price']);
-        // $stmt->bindParam(':image_path', $data['image_path']);
-        $stmt->execute();
+        
     }
 
     public function update($id, $data)

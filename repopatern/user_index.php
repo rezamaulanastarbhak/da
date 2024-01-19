@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +13,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>hello I'm User</h1>
+    <h1>hello I'm <?= $_SESSION['username'] ;?></h1>
 </body>
 </html>
