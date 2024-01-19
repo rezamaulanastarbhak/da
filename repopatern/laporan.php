@@ -6,7 +6,6 @@
 require_once 'koneksi.php';
 require_once 'ProductRepository.php';
 require_once 'ProductRepositoryInterface.php';
-
 require 'fpdf1/fpdf.php';
 
 $products = $productRepository->joinAll();
@@ -47,7 +46,7 @@ $pdf->Cell(20, 10, 'Jenis', 1, 0, 'C');
 $pdf->Cell(40, 10, 'image path', 1, 1, 'C');
 $no = 1;
 
-$pdf->SetFont('Arial','', 11);
+$pdf->SetFont('Arial','', 8);
 foreach ($products as $row) {
     $pdf->Cell(10, 10, $no++, 1);
     $pdf->Cell(40, 10, $row['name'], 1);

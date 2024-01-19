@@ -3,6 +3,8 @@ require_once 'ProductRepository.php';
 require_once 'ProductRepositoryInterface.php';
 require_once 'JenisRepository.php';
 require_once 'JenisRepositoryInterface.php';
+require_once 'RegisterRepository.php';
+require_once 'RegisterRepositoryInterface.php';
 
 
 $host = 'localhost';
@@ -21,3 +23,4 @@ try {
 // Dependency injection ProductRepository
 $productRepository = new ProductRepository($conn);
 $jenisRepository = new JenisRepository($conn);
+$registerRepository = new RegisterRepository($conn);

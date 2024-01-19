@@ -1,8 +1,8 @@
 <?php
 require_once 'koneksi.php';
-require_once 'ProductRepositoryInterface.php';
+require_once 'RegisterRepositoryInterface.php';
 
-class ProductRepository implements ProductRepositoryInterface
+class RegisterRepository implements RegisterRepositoryInterface
 {
     private $conn;
 
@@ -28,11 +28,13 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function create($data)
     {
-        $stmt = $this->conn->prepare("INSERT INTO products (name, description, price, image_path) VALUES (:name, :description, :price, :image_path)");
-        $stmt->bindParam(':name', $data['name']);
-        $stmt->bindParam(':description', $data['description']);
-        $stmt->bindParam(':price', $data['price']);
-        $stmt->bindParam(':image_path', $data['image_path']);
+        $stmt = $this->conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
+        $stmt->execute([$data['username'], $data['password'], $data['role']]);
+        // $stmt = $this->conn->prepare("INSERT INTO products (name, description, price, image_path) VALUES (:name, :description, :price, :image_path)");
+        // $stmt->bindParam(':name', $data['name']);
+        // $stmt->bindParam(':description', $data['description']);
+        // $stmt->bindParam(':price', $data['price']);
+        // $stmt->bindParam(':image_path', $data['image_path']);
         $stmt->execute();
     }
 
@@ -54,12 +56,12 @@ class ProductRepository implements ProductRepositoryInterface
         $stmt->execute();
     }
 
-    public function joinAll()
+    public function getUsername($username)
     {
-        $stmt = $this->conn->prepare("SELECT products.*, jenis.nama AS jenis_kategori FROM products
-        LEFT JOIN jenis ON products.id_jenis = jenis.id");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->execute([$username]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
     }
 }
 

@@ -2,10 +2,15 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
 require_once 'koneksi.php';
 require_once 'ProductRepository.php';
 require_once 'ProductRepositoryInterface.php';
+
 
 
 $products = $productRepository->joinAll();
@@ -32,8 +37,11 @@ $products = $productRepository->joinAll();
     </style>
 </head>
 <body>
+    <h1>hello <?= $_SESSION['username']; ?></h1>
     <h2>Data Produk</h2>
-    <a href="add.php">Tambah Produk</a>
+    <a href="add.php">Tambah Produk</a>|
+    <a href="laporan.php">laporan barang</a>
+    <a href="logout.php">logout</a>
     <table>
         <tr>
             <th>No</th>
